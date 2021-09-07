@@ -34,8 +34,8 @@ jobs:
             export PATH=~/bin:$PATH
             EOF
             source ~/.bashrc
-            repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52
-            repo sync
+            repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52 --depth 1
+            repo sync -j 100000
     
     - name: add device
       run: |
@@ -46,5 +46,5 @@ jobs:
     
     - name: Build
       run: |
-             source build/envsetup.sh && lunch
+             source build/envsetup.sh && lunch j1xlte_userdebug
              make -j20
