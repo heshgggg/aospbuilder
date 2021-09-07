@@ -30,7 +30,7 @@ jobs:
     
     - name: source
       run: |
-            cat >> ~/.bashrc
+            cat >> ~/.bashrc << EOF
             export PATH=~/bin:$PATH
             EOF
             source ~/.bashrc
