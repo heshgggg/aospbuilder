@@ -24,6 +24,7 @@ jobs:
     
     - name: source
       run: |
+            printf "export PATH=~/bin:$PATH" >> ~/.bashrc
             source ~/.bashrc
             mkdir ~/android
             cd ~/android
