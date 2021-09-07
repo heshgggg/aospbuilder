@@ -34,8 +34,8 @@ jobs:
             export PATH=~/bin:$PATH
             EOF
             source ~/.bashrc
-            repo init -u https://github.com/PixelExperience/manifest -b oreo-mr1
-            repo sync -c -j1000 --force-sync --no-clone-bundle --no-tags
+            repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52
+            repo sync -j1000
     
     - name: add device
       run: |
