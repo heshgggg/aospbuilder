@@ -38,7 +38,7 @@ jobs:
     
     - name: repo sync
       run: |
-            repo sync -c   
+            repo sync  
     
     - name: add device
       run: |
