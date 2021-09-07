@@ -14,7 +14,6 @@ jobs:
     - name: Setup jdk
       run: |
       sudo apt-get update
-      java -version
     - name: Install repo
       run: |
       mkdir ~/bin
