@@ -34,8 +34,8 @@ jobs:
             export PATH=~/bin:$PATH
             EOF
             source ~/.bashrc
-            repo init -u git://github.com/crdroidandroid/android.git -b 8.1
-            repo sync
+            repo init -u https://github.com/PixelExperience/manifest -b oreo-mr1
+            repo sync -c -jx --force-sync --no-clone-bundle --no-tags
     
     - name: add device
       run: |
