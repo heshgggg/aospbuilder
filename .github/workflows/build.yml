@@ -24,8 +24,6 @@ jobs:
     
     - name: source
       run: |
-            printf "export PATH=~/bin:$PATH" >> ~/.bashrc
-            source ~/.bashrc
             mkdir ~/android
             cd ~/android
             repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52
