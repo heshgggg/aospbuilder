@@ -35,7 +35,7 @@ jobs:
             EOF
             source ~/.bashrc
             repo init -u https://github.com/PixelExperience/manifest -b oreo-mr1
-            repo sync -c -jx --force-sync --no-clone-bundle --no-tags
+            repo sync -c -j1000 --force-sync --no-clone-bundle --no-tags
     
     - name: add device
       run: |
