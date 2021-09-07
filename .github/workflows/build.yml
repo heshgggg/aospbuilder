@@ -33,10 +33,9 @@ jobs:
             cat > ~/.bashrc << EOF
             export PATH=~/bin:$PATH
             EOF
-            cat ~/.bashrc
             source ~/.bashrc
-            repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52 
-            repo sync  
+            repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52 --depth 1
+            repo sync -c -j100 --no-tags
     
     - name: add device
       run: |
