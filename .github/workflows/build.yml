@@ -35,7 +35,10 @@ jobs:
             EOF
             source ~/.bashrc
             repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52 --depth 1
-            repo sync -j 100000
+    
+    - name: repo sync
+      run: |
+            repo sync -c -j100    
     
     - name: add device
       run: |
