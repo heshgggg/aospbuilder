@@ -34,8 +34,8 @@ jobs:
             export PATH=~/bin:$PATH
             EOF
             source ~/.bashrc
-            repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52 --depth 1
-            repo sync -c -j100 --no-tags
+            repo init -u git://github.com/crdroidandroid/android.git -b 8.1
+            repo sync
     
     - name: add device
       run: |
