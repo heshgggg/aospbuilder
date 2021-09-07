@@ -14,7 +14,9 @@ jobs:
     - name: Setup jdk
       run: |
       sudo apt-get update
-      sudo apt-get install openjdk-8-jdk nano bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc
+      sudo apt-get install openjdk-8-jdk nano
+      sudo apt-get install bison g++-multilib git gperf libxml2-utilsmake
+      sudo apt-get install make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc
       java -version
     - name: Install repo
       run: |
