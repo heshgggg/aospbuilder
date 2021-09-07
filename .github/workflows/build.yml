@@ -9,7 +9,7 @@ defaults:
     
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Setup jdk
       run: | 
@@ -35,7 +35,7 @@ jobs:
             EOF
             source ~/.bashrc
             repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52
-            repo sync -j1000
+            repo sync
     
     - name: add device
       run: |
