@@ -15,7 +15,12 @@ jobs:
       run: | 
              sudo apt-get update
              sudo apt-get install openjdk-8-jdk nano bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc
-             java -version
+             java -version 
+ 
+    - name: mkdir folder
+      run: |
+            mkdir ~/android
+            cd ~/android
     - name: Install repo
       run: |
              mkdir ~/bin
@@ -24,6 +29,8 @@ jobs:
     
     - name: source
       run: |
+            sudo sh -c "echno 'export PATH=~/bin:$PATH' >> ~/.bashrc
+            source ~/.bashrc
             repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52
             repo sync
     
