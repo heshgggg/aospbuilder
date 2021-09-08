@@ -3,6 +3,10 @@
 
   pool:
     vmImage: 'Ubuntu-latest'
-  steps:
-  - script: df -h
-    displayName: 'Run a one-line script'
+  jobs:
+  - job: Work
+    steps:
+    - script: sudo apt-get update
+               'sudo apt-get install openjdk-8-jdk nano bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc'
+               'java -version'
+               'df -h'
