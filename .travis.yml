@@ -1,8 +1,7 @@
   trigger:
   - main
 
-  pool:
-    vmImage: 'Ubuntu-latest'
+  environment: Ubuntu
   jobs:
   - job:
     steps:
