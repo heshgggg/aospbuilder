@@ -1,0 +1,50 @@
+name: AOSP Build
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+    
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Setup jdk
+      run: | 
+             sudo apt-get update
+             sudo apt-get install openjdk-8-jdk nano bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc
+             java -version
+             df -h
+ 
+    - name: mkdir folder
+      run: |
+            mkdir ~/android
+            cd ~/android
+    - name: Install repo
+      run: |
+             mkdir ~/bin
+             curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+             chmod a+x ~/bin/repo
+    
+    - name: source
+      run: |
+            cat > ~/.bashrc << EOF
+            export PATH=~/bin:$PATH
+            EOF
+            source ~/.bashrc
+            repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52
+            repo sync
+    
+    - name: add device
+      run: |
+             git clone https://github.com/ciyanogen/android_device_samsung_j1xlte device/samsung/j1xlte
+             git clone https://github.com/ciyanogen/android_kernel_samsung_j1xlte kernel/samsung/j1xlte
+             git clone https://github.com/ciyanogen/android_vendor_samsung vendor/samsung/j1
+             mv vendor/samsung/j1/j1xlte ~/android/vendor/samsung/j1xlte
+    
+    - name: Build
+      run: |
+             source build/envsetup.sh && lunch j1xlte_userdebug
+             make -j20
