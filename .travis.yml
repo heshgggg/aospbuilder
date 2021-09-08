@@ -1,4 +1,9 @@
 name: AOSP Build
+- task: AzureCLI@2
+  inputs:
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: 
 
 on:
   workflow_dispatch:
