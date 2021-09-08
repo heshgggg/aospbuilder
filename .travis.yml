@@ -3,10 +3,30 @@
 
   pool:
     vmImage: 'Ubuntu-latest'
-  jobs:
-  - job: Work
-    steps:
-    - script: sudo apt-get update
-               'sudo apt-get install openjdk-8-jdk nano bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc'
-               'java -version'
-               'df -h'
+  steps:
+  - task: AzureCLI@2
+    inputs:
+      scriptType: 'batch'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        sudo apt-get update
+        sudo apt-get install openjdk-8-jdk nano bison g++-multilib gitperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc
+        java -version
+        df -h
+        mkdir ~/android
+        cd ~/android
+        mkdir ~/bin
+        curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+        chmod a+x ~/bin/repo
+        cat > ~/.bashrc << EOF
+        export PATH=~/bin:$PATH
+        EOF
+        source ~/.bashrc
+        repo init -u https://android.googlesource.com/platform/manifest -b android-8.1.0_r52
+        repo sync
+        git clone https://github.com/ciyanogen/android_device_samsung_j1xlte device/samsung/j1xlte
+        git clone https://github.com/ciyanogen/android_kernel_samsung_j1xlte kernel/samsung/j1xlte
+        git clone https://github.com/ciyanogen/android_vendor_samsung vendor/samsung/j1
+        mv vendor/samsung/j1/j1xlte ~/android/vendor/samsung/j1xlte
+        source build/envsetup.sh && lunch j1xlte_userdebug
+        make -j20
