@@ -6,7 +6,7 @@
   jobs:
   - job:
     steps:
-    - task: AzureCLI
+    - task: AzureCLI@1
       inputs:
           scriptType: 'batch'
           scriptLocation: 'inlineScript'
