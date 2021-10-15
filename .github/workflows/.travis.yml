@@ -9,7 +9,8 @@ defaults:
     
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+      python-version:'3.9'
     steps:
     - name: Setup jdk
       run: | 
