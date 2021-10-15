@@ -10,7 +10,7 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-      python-version:'3.9'
+      python-version:'3.8'
     steps:
     - name: Setup jdk
       run: | 
