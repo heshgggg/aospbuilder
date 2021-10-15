@@ -13,6 +13,7 @@ jobs:
     steps:
     - name: Setup jdk
       run: | 
+             pip install google-colab
              python -c "from google.colab import drive" "drive.mount('/content/drive')"
              sudo apt-get update
              sudo apt-get install openjdk-8-jdk nano bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc
