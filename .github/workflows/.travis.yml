@@ -14,7 +14,7 @@ jobs:
     - name: Setup jdk
       run: | 
              sudo apt-get update
-             sudo apt-get install openjdk-11-jdk bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc flex curl python-in-python3
+             sudo apt-get install openjdk-11-jdk bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc flex curl
              java -version
              df -h
  
