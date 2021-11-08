@@ -9,14 +9,12 @@ defaults:
     
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - name: Setup jdk
       run: | 
-             pip install google-colab
-             python -c "from google.colab import drive" "drive.mount('/content/drive')"
              sudo apt-get update
-             sudo apt-get install openjdk-8-jdk nano bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc
+             sudo apt-get install openjdk-11-jdk bison g++-multilib git gperf libxml2-utils make zlib1g-dev zip liblz4-tool libncurses5 libssl-dev bc flex curl python-in-python3
              java -version
              df -h
  
@@ -36,17 +34,16 @@ jobs:
             export PATH=~/bin:$PATH
             EOF
             source ~/.bashrc
-            repo init -u https://android.googlesource.com/platform/manifest -b android-4.4.4_r2
-            repo sync
+            repo init -u https://github.com/Corvus-R/android_manifest.git -b 11
+            cd .repo
+            git clone https://github.com/LineageOS-MI-A2-MI-6X/local_manifests
+            cd local_manifests
+            cd ../..
+            repo sync -j$(nproc --all) --force-sync --no-tags --no-clone-bundle
     
-    - name: add device
-      run: |
-             git clone https://github.com/ciyanogen/android_device_samsung_j1xlte device/samsung/j1xlte
-             git clone https://github.com/ciyanogen/android_kernel_samsung_j1xlte kernel/samsung/j1xlte
-             git clone https://github.com/ciyanogen/android_vendor_samsung vendor/samsung/j1
-             mv vendor/samsung/j1/j1xlte ~/android/vendor/samsung/j1xlte
+
     
     - name: Build
       run: |
-             source build/envsetup.sh && lunch j1xlte_userdebug
-             make -j20
+             source build/envsetup.sh && lunch
+             make -j$(nproc)
