@@ -35,10 +35,6 @@ jobs:
             EOF
             source ~/.bashrc
             repo init -u https://github.com/Corvus-R/android_manifest.git -b 11
-            cd .repo
-            git clone https://github.com/LineageOS-MI-A2-MI-6X/local_manifests
-            cd local_manifests
-            cd ../..
             repo sync -j$(nproc --all) --force-sync --no-tags --no-clone-bundle
     
 
